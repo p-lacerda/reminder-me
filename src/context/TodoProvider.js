@@ -14,12 +14,30 @@ function Provider({ children }) {
     setTodoText('');
   }
 
+  const removeItem = (key) => {
+    const itemsFilter = todoList.filter((todo) => todo.key !== key);
+    setTodoList(itemsFilter);
+  }
+
+  const editItem = (key, index) => {
+    const obj = todoList.filter((item) => item.key === key);
+    obj[0].text = window.prompt();
+
+    setTodoList(state => {
+      return [
+        ...state,
+      ];
+    });
+  }
+
   const contextValue = {
     setTodoText,
     todoText,
     setTodoList,
     todoList,
     createList,
+    editItem,
+    removeItem
   };
 
   return (
