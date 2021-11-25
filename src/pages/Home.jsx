@@ -1,23 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React, {useEffect, useState, useContext} from 'react';
+import AddTodo from "../components/AddTodo";
+import TodoContext from "../context/TodoContext";
 
 function Home() {
-  const [todoText, setTodoText] = useState('')
-  const [todoList, setTodoList] = useState([])
-  const [copyList, setCopy] = useState([]);
+  const { todoText, setTodoText, todoList, setTodoList } = useContext(TodoContext);
   const [newList, setNewList] = useState([]);
   const [newNumb, setNewNumb] = useState(0);
-
-  const createList = () => {
-    const key = uuidv4();
-    setTodoList( [ ...todoList, {
-      key, text: todoText
-    }])
-    setCopy( [ ...todoList, {
-      key, text: todoText
-    }])
-    setTodoText('');
-  }
 
   const removeItem = (key) => {
     const itemsFilter = todoList.filter((todo) => todo.key !== key);
@@ -43,16 +31,7 @@ function Home() {
 
   return (
     <section>
-      <form>
-        <label htmlFor="newTodo">
-          Adicionar nova tarefa
-          <input
-            value={todoText}
-            onChange={(e) => (setTodoText(e.target.value))}
-          />
-        </label>
-        <button type="button" onClick={() => createList()} >Adicionar tarefa</button>
-      </form>
+      <AddTodo />
       <ul>
         { todoList !== undefined && todoList.map((todo, index) => (
           <li className="todo" key={ todo.key }>
