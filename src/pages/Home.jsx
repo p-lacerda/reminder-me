@@ -47,14 +47,14 @@ function Home() {
         <label htmlFor="newTodo">
           Adicionar nova tarefa
           <input
-              value={todoText}
-              onChange={(e) => (setTodoText(e.target.value))}
+            value={todoText}
+            onChange={(e) => (setTodoText(e.target.value))}
           />
         </label>
         <button type="button" onClick={() => createList()} >Adicionar tarefa</button>
       </form>
       <ul>
-      { todoList !== undefined && todoList.map((todo, index) => (
+        { todoList !== undefined && todoList.map((todo, index) => (
           <li className="todo" key={ todo.key }>
             <div>
               <input id={`todo-${todo.key}`} type="checkbox" />
@@ -64,32 +64,32 @@ function Home() {
             </div>
             <div>
               <button
-              type={"button"}
-              onClick={ () => editFunc(todo.key, index) }
+                type={"button"}
+                onClick={ () => editFunc(todo.key, index) }
               >
                 Editar
               </button>
               <button
-                  type="button"
-                  onClick={() => removeItem(todo.key, index)}
+                type="button"
+                onClick={() => removeItem(todo.key, index)}
               >
                 Remover tarefa
               </button>
               <button
-                  type="button"
-                  onClick={() => upOrDownTask()}
+                type="button"
+                onClick={() => upOrDownTask()}
               >
                 Subir tarefa
               </button>
               <button
-                  type="button"
+                type="button"
               >
                 Descer tarefa
               </button>
             </div>
           </li>
-      ))}
-        </ul>
+        ))}
+      </ul>
     </section>
   );
 }
