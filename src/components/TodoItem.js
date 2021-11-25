@@ -1,41 +1,59 @@
 import React, {useContext} from 'react';
+import {Center, IconButton, Text, textDecoration} from "@chakra-ui/react";
+import { EditIcon, DeleteIcon, ArrowUpIcon, ArrowDownIcon } from '@chakra-ui/icons'
 import TodoContext from "../context/TodoContext";
 
 function TodoItem({ todo, index }) {
   const { editItem, removeItem } = useContext(TodoContext);
   return (
+    <Center bg="whitesmoke">
     <li className="todo" key={ todo.key }>
       <div>
         <input id={`todo-${todo.key}`} type="checkbox" />
         <label htmlFor={`todo-${todo.key}`} id={todo.key}>
-          { todo.text }
+          <Text>
+            { todo.text }
+          </Text>
         </label>
       </div>
       <div>
-        <button
+        <IconButton
+          colorScheme="blue"
+          icon={ <EditIcon /> }
+          marginRight="5px"
           type={"button"}
           onClick={ () => editItem(todo.key, index) }
         >
           Editar
-        </button>
-        <button
+        </IconButton>
+        <IconButton
+          colorScheme="red"
+          icon={ <DeleteIcon /> }
+          marginRight="5px"
           type="button"
           onClick={() => removeItem(todo.key, index)}
         >
           Remover tarefa
-        </button>
-        <button
+        </IconButton>
+        <IconButton
+          colorScheme="green"
+          icon={ <ArrowUpIcon /> }
+          marginRight="5px"
           type="button"
         >
           Subir tarefa
-        </button>
-        <button
+        </IconButton>
+        <IconButton
+          colorScheme="orange"
+          icon={ <ArrowDownIcon /> }
+          marginRight="5px"
           type="button"
         >
           Descer tarefa
-        </button>
+        </IconButton>
       </div>
     </li>
+    </Center>
   );
 }
 
