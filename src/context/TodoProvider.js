@@ -21,6 +21,7 @@ function Provider({ children }) {
 
   const editItem = (key, index) => {
     const obj = todoList.filter((item) => item.key === key);
+
     obj[0].text = window.prompt();
 
     setTodoList(state => {
