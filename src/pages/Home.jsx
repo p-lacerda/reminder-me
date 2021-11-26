@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import { Box, HStack, StackDivider, IconButton, useColorMode } from "@chakra-ui/react"
+import {Box, HStack, StackDivider, IconButton, useColorMode, Flex, Container, Center} from "@chakra-ui/react"
 import { FaSun, FaMoon } from 'react-icons/fa';
 import AddTodo from "../components/AddTodo";
 import TodoItem from "../components/TodoItem";
@@ -22,17 +22,17 @@ function Home() {
         onClick={toggleColorMode}
       />
       <AddTodo />
-      <Box spacing={1} w="100%">
+      <Center
+        flexDirection="column"
+      >
         { todoList !== undefined && todoList.map((todo, index) => (
-          <HStack key={todo.key}>
           <TodoItem
           key={ todo.key }
           todo={ todo }
           index={ index }
           />
-          </HStack>
         ))}
-      </Box>
+      </Center>
     </section>
   );
 }
